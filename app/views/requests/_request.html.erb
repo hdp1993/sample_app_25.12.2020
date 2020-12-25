@@ -1,0 +1,16 @@
+<li id="request-<%= request.id %>">
+	<%= link_to gravatar_for(request.user, size: 50), request.user %>
+	<span class="user"><%= link_to request.user.name, request.user %></span>
+	<span class="content">
+		<%= request.content %>
+		<%= image_tag request.display_image if request.image.attached? %>
+		<%= image_tag request.image if request.image.attached? %>
+	</span>
+	<span class="timestamp">
+		Posted <%= time_ago_in_words(request.created_at) %> ago.
+		<% if current_user?(request.user) %>
+		<%= link_to "delete", request, method: :delete,
+		data: { confirm: "You sure?" } %>
+		<% end %>
+	</span>
+</li>

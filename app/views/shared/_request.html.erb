@@ -1,0 +1,7 @@
+<% if @request_items.any? %>
+<ol class="requests">
+<%= render @request_items %>
+</ol>
+<%= will_paginate @request_items, 
+params: { controller: :static_pages, action: :home } %>
+<% end %>

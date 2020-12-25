@@ -7,6 +7,17 @@
 <%= @user.name %>
 </h1>
 </section>
+
+<div class="col-md-8">
+<% if @user.requests.any? %>
+<h3>requests (<%= @user.requests.count %>)</h3>
+<ol class="requests">
+<%= render @requests %>
+</ol>
+<%= will_paginate @requests %>
+<% end %>
+</div>
+
 </aside>
 <div class="col-md-8">
 <%= render "follow_form" if logged_in? %>

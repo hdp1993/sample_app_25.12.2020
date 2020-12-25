@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :requests, dependent: :destroy
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
@@ -54,6 +55,12 @@ class User < ApplicationRecord
                     WHERE follower_id = :user_id"
     Micropost.where("user_id IN (#{following_ids})
                     OR user_id = :user_id", user_id: id)
+  end
+
+  def request
+    following_ids = "SELECT followed_id FROM relationships
+                    WHERE follower_id = :user_id"
+    Request.where("user_id = ?", id)
   end
 
   # Follows a user.
