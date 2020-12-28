@@ -23,7 +23,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.require(:micropost).permit(:image, :content)
+    params.require(:micropost).permit(:user_id, :image, :content)
   end
 
   def correct_user

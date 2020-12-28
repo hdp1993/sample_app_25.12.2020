@@ -1,0 +1,7 @@
+<% if @status_items.any? %>
+<ol class="statuses">
+	<%= render @status_items %>
+</ol>
+<%= will_paginate @status_items, 
+params: { controller: :static_pages, action: :home } %>
+<% end %>

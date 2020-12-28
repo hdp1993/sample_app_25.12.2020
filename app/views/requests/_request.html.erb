@@ -2,7 +2,7 @@
 	<%= link_to gravatar_for(request.user, size: 50), request.user %>
 	<span class="user"><%= link_to request.user.name, request.user %></span>
 	<span class="content">
-		<%= request.content %>
+		<%= request.conten %>
 		<%= image_tag request.display_image if request.image.attached? %>
 		<%= image_tag request.image if request.image.attached? %>
 	</span>

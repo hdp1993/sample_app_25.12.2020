@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get "sessions/new"
   get "users/new"
   root "static_pages#home"
+  get "statuses", to: "static_pages#statuses"
+  get "/requests", to: "static_pages#requests"
   get "/help", to: "static_pages#help"
   get "/about", to: "static_pages#about"
   get "/contact", to: "static_pages#contact"
@@ -18,4 +20,5 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :requests, only: [:create, :destroy]
+  resources :statuses, only: [:create, :destroy]
 end

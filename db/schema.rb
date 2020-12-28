@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_25_035241) do
+ActiveRecord::Schema.define(version: 2020_12_28_040314) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,15 @@ ActiveRecord::Schema.define(version: 2020_12_25_035241) do
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_statuses_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_statuses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -83,4 +92,5 @@ ActiveRecord::Schema.define(version: 2020_12_25_035241) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "microposts", "users"
   add_foreign_key "requests", "users"
+  add_foreign_key "statuses", "users"
 end

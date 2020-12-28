@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :statuses, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
@@ -61,6 +62,12 @@ class User < ApplicationRecord
     following_ids = "SELECT followed_id FROM relationships
                     WHERE follower_id = :user_id"
     Request.where("user_id = ?", id)
+  end
+
+  def status
+    following_ids = "SELECT followed_id FROM relationships
+                    WHERE follower_id = :user_id"
+    Status.where("user_id = ?", id)
   end
 
   # Follows a user.
